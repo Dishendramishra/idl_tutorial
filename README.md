@@ -97,6 +97,7 @@ Then execute following commands to define necessary paths in your `bash_profile`
 
 ```shell
 echo -e '\n' >> ~/.bash_profile
+echo 'EXOFAST_PATH="$HOME/idl/EXOFASTv2/" ; export EXOFAST_PATH' >> ~/.bash_profile
 echo '# if IDL_PATH is not defined, add EXOFAST_PATH and subdirectories to the default IDL path' >> ~/.bash_profile
 echo 'if [ -z "$IDL_PATH" ]; then' >> ~/.bash_profile
 echo 'IDL_PATH="<IDL_DEFAULT>:+${EXOFAST_PATH}" ; export IDL_PATH' >> ~/.bash_profile
