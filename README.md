@@ -1,28 +1,16 @@
-## Some Useful IDL Libraries:
+# Index
 
-| Name                                                         | Function                                             |
-| ------------------------------------------------------------ | ---------------------------------------------------- |
-| [CLEAR](https://climate.web.runbox.net/idl_lib/pro/clear.pro) | This procedure clears the active IDL display window. |
-| [CLS](https://climate.web.runbox.net/idl_lib/pro/cls.pro)    | This procedure clears the IDL terminal window.       |
-
-**Quick Installtion Commands**  
-Run commands below for installing above libraries:
-```shell
-idl_libs=`readlink \`which idl\``
-idl_libs="${idl_libs/\/bin\/idl/"/lib"}"
-
-sudo wget https://raw.githubusercontent.com/Dishendramishra/idl_tutorial/master/libraries/clear.pro -P $idl_libs
-sudo wget https://raw.githubusercontent.com/Dishendramishra/idl_tutorial/master/libraries/cls.pro -P $idl_libs
-unset idl_libs
-```
-
-For more check **Dáithí** libraries https://climate.web.runbox.net/idl_lib/index.html
+1. [Installing IDL](#installing-idl)
+2. [Installing Exofastv2](#installing-exofastv2)
+3. [Some Useful IDL Libraries](#some-useful-idl-libraries)
 
 
 
 # Installing IDL
 
 - ### **On Linux**
+
+  Pre-installed libraries: `astron coyote clear cls` 
 
 ```shell
 #Fixing  libXp.so.6
@@ -31,26 +19,26 @@ sudo ln -s /usr/lib/x86_64-linux-gnu/libXpm.so.4.11.0 \
 /usr/lib/x86_64-linux-gnu/libXp.so.6
 
 cd
-gdown --id 132FL4KwI7VWdzrw2bVc4vxqeRXuQZaJN
-gdown --id 1HvQAtnpxGbcAe6yqUHc3hFAFgwM0RI9i
-sudo mkdir /usr/local/itt      
-sudo tar -xvf ./idl71linux.x86.tar.gz --directory /usr/local/itt/
+wget -O idl_linux.tar.gz https://www.dropbox.com/s/bvs9wzpkue87vzy/idl_linux.tar.gz?dl=1
+wget -O license.dat https://www.dropbox.com/s/d3p6paydwangq2c/license.dat?dl=1
+sudo tar -xvf ./idl_linux.tar.gz --directory /usr/local/
+sudo mv ./license.dat /usr/local/itt/license/
 cd /usr/local/itt
 sudo /usr/local/itt/install
-cd
-sudo mv ./license.dat /usr/local/itt/license/
 ```
 
 <br>
 
 - ### On Mac
 
+  Pre-installed libraries: `astron coyote clear cls` 
+
 ```shell
 brew cask install xquartz
 
 cd
-gdoen --id 1RBBZztZ3_W92uMUySzQ5RCAOYFB6uWiD
-sudo tar -xvf idl_mac.tar --directory /usr/local/
+wget https://www.dropbox.com/s/dhdgvno47nx6o1b/idl_mac.tar.gz
+sudo tar -xvf idl_mac.tar.gz --directory /usr/local/
 cd /usr/local/itt
 sudo chmod +x /usr/local/itt/install
 sudo /usr/local/itt/install
@@ -76,16 +64,21 @@ sudo rm -rf /usr/local/itt/idl706/bin/bin.darwin.x86_64/libz.1.dylib
 
 ### **Installing Libraries**
 
-I **strongly recommend** these libraries, these commands works on both Linux and Mac.
+If you have installed `idl` using instructions above skip this.
 
 ```shell
 idl_libs=`readlink \`which idl\``
 idl_libs="${idl_libs/\/bin\/idl/"/lib"}"
 
-sudo git clone https://github.com/Dishendramishra/coyote $idl_libs/coyote
-sudo git clone https://github.com/Dishendramishra/IDLAstro $idl_libs/astron
-sudo wget https://raw.githubusercontent.com/Dishendramishra/idl_tutorial/master/libraries/clear.pro -P $idl_libs
-sudo wget https://raw.githubusercontent.com/Dishendramishra/idl_tutorial/master/libraries/cls.pro -P $idl_libs
+git clone https://github.com/Dishendramishra/coyote ./coyote
+sudo mv ./coyote $idl_libs/
+git clone https://github.com/Dishendramishra/IDLAstro ./astron
+sudo mv ./astron $idl_libs/
+
+wget https://raw.githubusercontent.com/Dishendramishra/idl_tutorial/master/libraries/clear.pro
+sudo mv ./clear.pro $idl_libs/
+wget https://raw.githubusercontent.com/Dishendramishra/idl_tutorial/master/libraries/cls.pro
+sudo mv ./cls.pro  $idl_libs/
 unset idl_libs
 ```
 
@@ -129,3 +122,15 @@ echo "source ~/.bash_profile" >>  ~/.zshrc
 cd $EXOFAST_PATH/examples/hat3
 idl -e "fithat3"
 ```
+
+
+
+# Some Useful IDL Libraries
+
+| Name                                                         | Function                                             |
+| ------------------------------------------------------------ | ---------------------------------------------------- |
+| [CLEAR](https://climate.web.runbox.net/idl_lib/pro/clear.pro) | This procedure clears the active IDL display window. |
+| [CLS](https://climate.web.runbox.net/idl_lib/pro/cls.pro)    | This procedure clears the IDL terminal window.       |
+
+For more check **Dáithí** libraries https://climate.web.runbox.net/idl_lib/index.html
+
